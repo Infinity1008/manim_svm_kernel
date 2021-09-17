@@ -1,7 +1,7 @@
 from manim import *
 
 
-class GraphAreaPlot(Scene):
+class Svc_Part_2(Scene):
     def construct(self):
         ax = Axes(
             x_range=[0, 20, 5],
@@ -32,17 +32,20 @@ class GraphAreaPlot(Scene):
 
 
         self.play(FadeIn(data_points_manim_left_vg,data_points_manim_mid_vg,data_points_manim_right_vg))
+        self.wait(1)
         self.play(data_points_manim_left_vg.animate.set_color(RED),data_points_manim_mid_vg.animate.set_color(GREEN),data_points_manim_right_vg.animate.set_color(RED))
         self.wait(1)
 
         # margin_line
         margin_line = Line(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).set_color(YELLOW)
-        self.play(Create(margin_line))
+        self.play(Create(margin_line,run_time=2))
+        self.wait(2)
 
         margin_line_up = DashedLine(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).shift(UP*.7)
         margin_line_down = DashedLine(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).shift(DOWN*.7)
 
-        self.play(Create(margin_line_up),Create(margin_line_down))
+        self.play(Create(margin_line_up,run_time=2),Create(margin_line_down,run_time=2))
+        self.wait(1)
 
 
 
@@ -50,7 +53,7 @@ class GraphAreaPlot(Scene):
         line_up = DashedLine(ax.coords_to_point(15.7,11.5),ax.coords_to_point(15.7,9.5)).set_color(YELLOW)
         line_down = DashedLine(ax.coords_to_point(15.1,6.5),ax.coords_to_point(15.1,9)).set_color(YELLOW)
 
-        self.play(Create(line_up),Create(line_down))
+        self.play(Create(line_up,run_time=1),Create(line_down,run_time=1))
 
         # Brackets
         b1 = Brace(line_up,RIGHT)
@@ -59,6 +62,13 @@ class GraphAreaPlot(Scene):
         self.play(Write(b1text))
         self.play(FadeOut(b1, b1text))
         self.play(FadeOut(line_up, line_down))
+        self.wait()
+
+        # Support vector classifier
+        svc_text = Text("Support vector classifier")
+        svc_text.shift(UP*2)
+        self.play(Write(svc_text))
+
 
 
 
