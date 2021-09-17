@@ -208,12 +208,16 @@ class GraphAreaPlot(Scene):
 
         # Running different scenarios
         self.play(data_points_manim_left_vg.animate.set_color(WHITE),data_points_manim_right_vg.animate.set_color(WHITE),data_points_manim_left_vg[2].animate.set_color(RED),data_points_manim_right_vg[4].animate.set_color(GREEN),divide_line_thrid.animate.move_to(ax.coords_to_point(5.5)))
+        self.play(Flash(data_points_manim_left_vg[2]),Flash(data_points_manim_right_vg[4]))
         self.wait(1)
         self.play(data_points_manim_left_vg.animate.set_color(WHITE),data_points_manim_right_vg.animate.set_color(WHITE),data_points_manim_left_vg[3].animate.set_color(RED),data_points_manim_right_vg[1].animate.set_color(GREEN),divide_line_thrid.animate.move_to(ax.coords_to_point(5.3)))
+        self.play(Flash(data_points_manim_left_vg[3]), Flash(data_points_manim_right_vg[1]))
         self.wait(1)
         self.play(data_points_manim_left_vg.animate.set_color(WHITE),data_points_manim_right_vg.animate.set_color(WHITE),data_points_manim_left_vg[5].animate.set_color(RED),data_points_manim_right_vg[5].animate.set_color(GREEN),divide_line_thrid.animate.move_to(ax.coords_to_point(6.45)))
+        self.play(Flash(data_points_manim_left_vg[5]), Flash(data_points_manim_right_vg[5]))
         self.wait(1)
         self.play(data_points_manim_left_vg.animate.set_color(WHITE),data_points_manim_right_vg.animate.set_color(WHITE),data_points_manim_left_vg[5].animate.set_color(RED),data_points_manim_right_vg[0].animate.set_color(GREEN),divide_line_thrid.animate.move_to(ax.coords_to_point(5.8)))
+        self.play(Flash(data_points_manim_left_vg[5]), Flash(data_points_manim_right_vg[0]))
 
         # Margins and brackets
         soft_margin_left = DashedLine(start=ax.coords_to_point(5.8,-1),end= ax.coords_to_point(4.5,-1))

@@ -25,6 +25,7 @@ class GraphAreaPlot(Scene):
         y3 = [7.5,12,15,19]
 
 
+
         data_points_manim_left_vg = VGroup(*[Dot(ax.coords_to_point(i,j)).scale(1.5) for i,j in zip(x1,y1)])
         data_points_manim_mid_vg = VGroup(*[Dot(ax.coords_to_point(i,j)).scale(1.5) for i,j in zip(x2,y2)])
         data_points_manim_right_vg = VGroup(*[Dot(ax.coords_to_point(i,j)).scale(1.5) for i,j in zip(x3,y3)])
@@ -35,10 +36,29 @@ class GraphAreaPlot(Scene):
         self.wait(1)
 
         # margin_line
-        margin_line = Line(ax.coords_to_point(3,0),ax.coords_to_point(20,13)).set_color(YELLOW)
+        margin_line = Line(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).set_color(YELLOW)
         self.play(Create(margin_line))
 
+        margin_line_up = DashedLine(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).shift(UP*.7)
+        margin_line_down = DashedLine(ax.coords_to_point(3,0),ax.coords_to_point(20,12.5)).shift(DOWN*.7)
 
+        self.play(Create(margin_line_up),Create(margin_line_down))
+
+
+
+        # Lines from margin to threshold
+        line_up = DashedLine(ax.coords_to_point(15.7,11.5),ax.coords_to_point(15.7,9.5)).set_color(YELLOW)
+        line_down = DashedLine(ax.coords_to_point(15.1,6.5),ax.coords_to_point(15.1,9)).set_color(YELLOW)
+
+        self.play(Create(line_up),Create(line_down))
+
+        # Brackets
+        b1 = Brace(line_up,RIGHT)
+        b1text = b1.get_text("Margin")
+        self.play(Create(b1))
+        self.play(Write(b1text))
+        self.play(FadeOut(b1, b1text))
+        self.play(FadeOut(line_up, line_down))
 
 
 
